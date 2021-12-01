@@ -14,7 +14,6 @@ import torch.nn.init as init
 __all__ = [
     'get_device',
     'get_cifar_models',
-    'get_imagenet_models',
     'set_seed',
     'get_mean_and_std',
     'init_params',
