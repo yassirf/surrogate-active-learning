@@ -20,6 +20,9 @@ def get_args(model_names):
     # Mimo arguments
     parser = get_mimo_args(parser)
 
+    # Self-distribution distillation
+    parser = get_self_args(parser)
+
     return process_args(parser)
 
 
@@ -89,6 +92,15 @@ def get_mimo_args(parser):
     parser.add_argument('--num-heads', type=int, default=1, help='Number of subnetworks in mimo')
     parser.add_argument('--batch-repetitions', type=int, default=1, help='Number of batch repetitions')
     parser.add_argument('--input-repetitions', type=float, default=0.0, help='Probability of input repetitions')
+    return parser
+
+
+def get_self_args(parser):
+    # Self-Distribution Distillation
+    parser.add_argument('--temperature-scale-est', type=float, default=1.0, help='Temperature in estimating dirichlet')
+    parser.add_argument('--temperature-scale-est-gamma', type=float, default=1.0, help='Exponential reduction in scale')
+    parser.add_argument('--temperature-scale-num', type=float, default=1.0, help='Temperature in kl loss')
+    parser.add_argument('--temperature-scale-num-gamma', type=float, default=1.0, help='Exponential rediction in estimation')
     return parser
 
 
