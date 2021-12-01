@@ -6,8 +6,8 @@ import math
 __all__ = [
     'densenet',
     'baseline10densenet',
-    'baselineda10densenet',
     'baseline100densenet',
+    'baselineda10densenet',
     'baselineda100densenet',
 ]
 

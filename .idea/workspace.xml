@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="" />
+    <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/models/cifar/autoencoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cifar/densenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cifar/densenet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/loaders.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/loaders.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +50,6 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -151,6 +155,7 @@
       <workItem from="1638127125215" duration="6846000" />
       <workItem from="1638193601440" duration="4000" />
       <workItem from="1638312624839" duration="4946000" />
+      <workItem from="1638357680110" duration="1712000" />
     </task>
     <servers />
   </component>
@@ -178,10 +183,10 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1638127594592" />
-    <state x="397" y="210" key="SettingsEditor" timestamp="1637625399720">
+    <state x="397" y="210" key="SettingsEditor" timestamp="1638358076855">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="397" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1637625399720" />
+    <state x="397" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1638358076855" />
     <state x="739" y="364" key="refactoring.ChangeSignatureDialog" timestamp="1637833545122">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>

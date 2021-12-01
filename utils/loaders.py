@@ -118,17 +118,24 @@ def load_checkpoint(args, model, optimizer, reset = False):
 
 # Loaders only compatible with cifar
 def load_transform(args):
+
+    # Let the normalisation layer be different for daf
+    normalize = transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+    if args.arch.startswith('daf'): normalize = transforms.Normalize((0.50, 0.50, 0.50), (0.50, 0.50, 0.50))
+
+    # Default transformation
     transform_train = transform_test = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+        normalize,
     ])
 
+    # And with data augmentation
     if args.augment:
         transform_train = transforms.Compose([
             transforms.RandomCrop(32, padding = 4),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
-            transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+            normalize,
         ])
 
     return transform_train, transform_test
