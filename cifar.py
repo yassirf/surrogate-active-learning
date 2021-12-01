@@ -75,21 +75,9 @@ def setup_model(args, state, device, use_gpu):
 
     # Initialise optimiser
     cudnn.benchmark = True
-    optimizer = load_optimizer(args, model)
-    scheduler = load_learning_rate_schedule(args, optimizer)
 
     # Resume
     title = 'cifar-10-' + args.arch
-    if args.resume:
-        print('==> Resuming from checkpoint..')
-        assert os.path.isfile(args.resume), 'Error: no checkpoint directory found!\n{}'.format(args.resume)
-        model, _, best_acc, start_epoch = load_checkpoint(args, model, optimizer, reset=True)
-
-        # Reinitialise after resuming
-        optimizer = load_optimizer(args, model)
-        scheduler = load_learning_rate_schedule(args, optimizer)
-
-    state['lr'] = scheduler.get_last_lr()[0]
     # Loggers for training
     logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
     logger.set_names(['Learning Rate', 'Dataset size', 'Train Loss', 'Valid Loss', 'Train Acc.', 'Valid Acc.'])
@@ -97,7 +85,7 @@ def setup_model(args, state, device, use_gpu):
     # Log location for saved models
     print('==> Checkpoints saved to: {}'.format(args.checkpoint))
 
-    return start_epoch, best_acc, model, optimizer, scheduler, logger
+    return start_epoch, best_acc, model, logger
 
 
 # Setting up task
@@ -107,8 +95,7 @@ args, state, device, use_gpu = setup_task(models)
 def main():
 
     # Setting up model structure
-    start_epoch, best_acc, model, optimizer, scheduler, logger = \
-        setup_model(args, state, device, use_gpu)
+    start_epoch, best_acc, model, logger = setup_model(args, state, device, use_gpu)
 
     # Time tracking
     t0 = time.time()
@@ -139,6 +126,9 @@ def main():
 
         # Reinitialise model
         model = model.reinitialise().to(device)
+        optimizer = load_optimizer(args, model)
+        scheduler = load_learning_rate_schedule(args, optimizer)
+        state['lr'] = scheduler.get_last_lr()[0]
 
         # Convert labelled into a training set
         trainloader = data.DataLoader(active_dataset, batch_size=args.train_batch, shuffle=True, num_workers=args.workers)
