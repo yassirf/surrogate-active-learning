@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cifar.py" beforeDir="false" afterPath="$PROJECT_DIR$/cifar.py" afterDir="false" />
-    </list>
+    <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,7 +150,7 @@
       <workItem from="1638127125215" duration="6846000" />
       <workItem from="1638193601440" duration="4000" />
       <workItem from="1638312624839" duration="4946000" />
-      <workItem from="1638357680110" duration="7402000" />
+      <workItem from="1638357680110" duration="7747000" />
     </task>
     <servers />
   </component>

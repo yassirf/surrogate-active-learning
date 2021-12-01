@@ -52,4 +52,4 @@ class ActiveLearningDataset(Dataset):
         return len(self.idx)
 
     def __getitem__(self, i):
-        return self.set[self.idx[0]]
+        return self.set[self.idx[i]]
