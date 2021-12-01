@@ -102,7 +102,6 @@ class DenseNet(nn.Module):
         self.growthRate = growth_rate
         self.dropRate = drop_rate
         self.compression_rate = compression_rate
-        self.kwargs = kwargs
 
         # self.inplanes is a global variable used across multiple helper functions
         self.inplanes = growth_rate * 2
@@ -126,11 +125,10 @@ class DenseNet(nn.Module):
         return DenseNet(
             depth = self.depth,
             block = Bottleneck,
-            dropRate = self.dropRate,
+            drop_rate = self.dropRate,
             num_classes = self.num_classes,
             growth_rate = self.growthRate,
             compression_rate = self.compression_rate,
-            **self.kwargs
         )
 
     def _initialise(self):

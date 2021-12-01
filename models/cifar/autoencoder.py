@@ -33,7 +33,6 @@ class BottleNeckCNNAutoEnconder(nn.Module):
 
         # Loss function
         self.criterion = nn.MSELoss(reduction='mean')
-        self.kwargs = kwargs
 
         # Plane mappings
         self.planes = planes
@@ -50,9 +49,7 @@ class BottleNeckCNNAutoEnconder(nn.Module):
         self.foutput = nn.Tanh()
 
     def reinitialise(self):
-        return BottleNeckCNNAutoEnconder(
-            self.planes, self.num_layers, **self.kwargs
-        )
+        return BottleNeckCNNAutoEnconder(self.planes, self.num_layers)
 
     def _make_encoder(self):
         layers = []
