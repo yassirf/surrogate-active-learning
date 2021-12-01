@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="fd8c98eb-87d7-4de8-90d1-6a078457df13" />
+  <component name="ProjectId" id="1ylydWeFqP6bztjkEpCi9yu1LRU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/models/cifar" />
+      <recent name="$PROJECT_DIR$/utils/ood" />
+      <recent name="$PROJECT_DIR$/loss" />
+      <recent name="$PROJECT_DIR$/models/self" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models/cifar" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="" />
+      <created>1632840556877</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632840556877</updated>
+      <workItem from="1632840558321" duration="13903000" />
+      <workItem from="1632867185825" duration="365000" />
+      <workItem from="1632867598650" duration="265000" />
+      <workItem from="1632918057603" duration="204000" />
+      <workItem from="1633033504677" duration="805000" />
+      <workItem from="1633123688694" duration="421000" />
+      <workItem from="1633165306842" duration="598000" />
+      <workItem from="1633439103116" duration="18428000" />
+      <workItem from="1633690764429" duration="5701000" />
+      <workItem from="1633767116847" duration="2999000" />
+      <workItem from="1633801522630" duration="21157000" />
+      <workItem from="1633933629807" duration="47000" />
+      <workItem from="1633936835889" duration="64000" />
+      <workItem from="1633937254489" duration="589000" />
+      <workItem from="1633948613931" duration="4514000" />
+      <workItem from="1633964439116" duration="1314000" />
+      <workItem from="1634046588086" duration="75000" />
+      <workItem from="1634047218763" duration="405000" />
+      <workItem from="1634202361680" duration="96000" />
+      <workItem from="1634202659137" duration="1487000" />
+      <workItem from="1634296165937" duration="3457000" />
+      <workItem from="1634562401447" duration="181000" />
+      <workItem from="1634570936433" duration="1228000" />
+      <workItem from="1634588314331" duration="958000" />
+      <workItem from="1634591700638" duration="9000" />
+      <workItem from="1634645971425" duration="3000" />
+      <workItem from="1634646659946" duration="1654000" />
+      <workItem from="1634650651467" duration="16000" />
+      <workItem from="1634659374428" duration="244000" />
+      <workItem from="1634822531552" duration="528000" />
+      <workItem from="1634896109601" duration="1033000" />
+      <workItem from="1634905900776" duration="841000" />
+      <workItem from="1634913832125" duration="134000" />
+      <workItem from="1634913987131" duration="43000" />
+      <workItem from="1635004136825" duration="350000" />
+      <workItem from="1635015313729" duration="278000" />
+      <workItem from="1635016400579" duration="601000" />
+      <workItem from="1635156321556" duration="129000" />
+      <workItem from="1635246347278" duration="317000" />
+      <workItem from="1635277448824" duration="1070000" />
+      <workItem from="1635323575036" duration="29000" />
+      <workItem from="1635323681489" duration="455000" />
+      <workItem from="1635328539450" duration="518000" />
+      <workItem from="1635352254217" duration="729000" />
+      <workItem from="1635424960556" duration="123000" />
+      <workItem from="1635426751939" duration="2637000" />
+      <workItem from="1635615516238" duration="1061000" />
+      <workItem from="1635693755941" duration="1236000" />
+      <workItem from="1635710357095" duration="453000" />
+      <workItem from="1635711681389" duration="102000" />
+      <workItem from="1635715900623" duration="746000" />
+      <workItem from="1635754401873" duration="113000" />
+      <workItem from="1635756924987" duration="216000" />
+      <workItem from="1635763002680" duration="122000" />
+      <workItem from="1635769991678" duration="13000" />
+      <workItem from="1635770627009" duration="966000" />
+      <workItem from="1635982957039" duration="733000" />
+      <workItem from="1636223445053" duration="205000" />
+      <workItem from="1636455152451" duration="7612000" />
+      <workItem from="1636486041362" duration="1365000" />
+      <workItem from="1636504106646" duration="766000" />
+      <workItem from="1636711938399" duration="441000" />
+      <workItem from="1636727661577" duration="324000" />
+      <workItem from="1636749204438" duration="9128000" />
+      <workItem from="1636768113406" duration="2602000" />
+      <workItem from="1636916344037" duration="837000" />
+      <workItem from="1636918461988" duration="229000" />
+      <workItem from="1637014260659" duration="668000" />
+      <workItem from="1637053834820" duration="2357000" />
+      <workItem from="1637394647659" duration="12454000" />
+      <workItem from="1637486116652" duration="1661000" />
+      <workItem from="1637577718808" duration="10392000" />
+      <workItem from="1637666094244" duration="7025000" />
+      <workItem from="1637776278814" duration="6103000" />
+      <workItem from="1638092285733" duration="1334000" />
+      <workItem from="1638127125215" duration="6846000" />
+      <workItem from="1638193601440" duration="4000" />
+      <workItem from="1638312624839" duration="4946000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="490" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1633905905286">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="490" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1633905905286" />
+    <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1638127594592">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="634" y="325" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1638127594592" />
+    <state x="397" y="210" key="SettingsEditor" timestamp="1637625399720">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="397" y="210" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1637625399720" />
+    <state x="739" y="364" key="refactoring.ChangeSignatureDialog" timestamp="1637833545122">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="739" y="364" key="refactoring.ChangeSignatureDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1637833545122" />
+    <state x="561" y="268" width="670" height="676" key="search.everywhere.popup" timestamp="1632842546633">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="561" y="268" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1632842546633" />
+  </component>
+</project>
