@@ -73,7 +73,7 @@ def setup_model(args, state, device, use_gpu):
     # Load model
     print("==> Creating model '{}'".format(args.arch))
     model = load_model(args, models, num_classes).to(device)
-    print('    Total params: %.2fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
+    print('    Total params: %.6fM' % (sum(p.numel() for p in model.parameters()) / 1000000.0))
 
     # Initialise optimiser
     cudnn.benchmark = True
