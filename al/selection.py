@@ -80,8 +80,8 @@ class SelectionGreedyLeastConfidence(BaseSelector):
         super(SelectionGreedyLeastConfidence, self).__init__(args, use_cuda, **kwargs)
 
     def compute_single(self, args, outputs):
-        values, _ =  -torch.log_softmax(outputs, dim = -1).max(-1)
-        return values
+        values, _ =  torch.log_softmax(outputs, dim = -1).max(-1)
+        return -values
 
     def select(self, args, model: nn.Module, active_set: ActiveLearningDataset):
 
