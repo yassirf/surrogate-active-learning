@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="223feab8-ab11-46f4-aa0e-0071e004ebb7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/al/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/al/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/cifar/densenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/cifar/densenet.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,7 @@
       <workItem from="1638127125215" duration="6846000" />
       <workItem from="1638193601440" duration="4000" />
       <workItem from="1638312624839" duration="4946000" />
-      <workItem from="1638357680110" duration="5541000" />
+      <workItem from="1638357680110" duration="5924000" />
     </task>
     <servers />
   </component>

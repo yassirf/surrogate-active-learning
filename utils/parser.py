@@ -17,6 +17,9 @@ def get_args(model_names):
     # Get active learning args
     parser = get_active_learning_args(parser)
 
+    # Mimo arguments
+    parser = get_mimo_args(parser)
+
     return process_args(parser)
 
 
@@ -78,6 +81,14 @@ def get_active_learning_args(parser):
     parser.add_argument('--initial-size', default=0.05, type=float, help='Fraction of dataset as initial')
     parser.add_argument('--acquisition-size', default=0.05, type=float, help='Fraction of dataset as acquisition')
     parser.add_argument('--acquisition-iterations', default=4, type=int, help='Number of AL loops')
+    return parser
+
+
+def get_mimo_args(parser):
+    # Multi input, Multi output arguments
+    parser.add_argument('--num-heads', type=int, default=1, help='Number of subnetworks in mimo')
+    parser.add_argument('--batch-repetitions', type=int, default=1, help='Number of batch repetitions')
+    parser.add_argument('--input-repetitions', type=float, default=0.0, help='Probability of input repetitions')
     return parser
 
 
