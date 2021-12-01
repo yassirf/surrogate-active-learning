@@ -99,7 +99,6 @@ class DenseNet(nn.Module):
         self.criterion = nn.CrossEntropyLoss(reduction = 'mean')
 
         self.depth = depth
-        self.block = block,
         self.growthRate = growth_rate
         self.dropRate = drop_rate
         self.compression_rate = compression_rate
@@ -126,7 +125,7 @@ class DenseNet(nn.Module):
     def reinitialise(self):
         return DenseNet(
             depth = self.depth,
-            block = self.block,
+            block = Bottleneck,
             dropRate = self.dropRate,
             num_classes = self.num_classes,
             growth_rate = self.growthRate,
