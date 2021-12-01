@@ -129,7 +129,7 @@ class DenseNet(nn.Module):
             block = self.block,
             dropRate = self.dropRate,
             num_classes = self.num_classes,
-            growth_rate = self.growth_rate,
+            growth_rate = self.growthRate,
             compression_rate = self.compression_rate,
             **self.kwargs
         )
