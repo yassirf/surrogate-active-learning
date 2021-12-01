@@ -189,6 +189,7 @@ def main():
         print(best_acc)
 
         # Store the chosen dataset
+        print("Saving dataset")
         save_dataset(
             active_dataset,
             checkpoint=args.checkpoint,
