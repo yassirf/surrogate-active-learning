@@ -46,6 +46,12 @@ def load_optimizer(args, model):
             weight_decay = args.weight_decay,
             nesterov = "nesterov" in opt_name,
         )
+    if opt_name.startswith("adam"):
+        optimizer = torch.optim.ADAM(
+            model.parameters(),
+            lr = args.lr,
+            weight_decay = args.weight_decay,
+        )
     elif opt_name == "rmsprop":
         optimizer = torch.optim.RMSprop(
             model.parameters(),
