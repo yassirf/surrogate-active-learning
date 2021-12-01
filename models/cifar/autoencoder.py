@@ -4,7 +4,12 @@ import torch.nn.functional as F
 import math
 
 __all__ = [
-    'daf_small_bottleneck_cnn_autoenconder'
+    'daf_small_bottleneck_cnn_autoenconder',
+    'daf_xl_small_bottleneck_cnn_autoenconder',
+    'daf_medium_bottleneck_cnn_autoenconder',
+    'daf_xl_medium_bottleneck_cnn_autoenconder',
+    'daf_large_bottleneck_cnn_autoenconder',
+    'daf_xl_large_bottleneck_cnn_autoenconder',
 ]
 
 
