@@ -69,15 +69,15 @@ class BottleNeckCNNAutoEnconder(nn.Module):
 
     def _make_decoder(self):
         layers = []
-        layers.append(make_tcnn_block(self.planes[3], self.planes[4], kernel_size=3, stride=2, padding=0))
+        layers.append(make_tcnn_block(self.planes[3], self.planes[4], kernel_size=3, stride=2, padding=1))
         layers.extend([make_cnn_block(self.planes[4], self.planes[4], kernel_size=3, stride=1, padding=1)
                        for _ in range(self.num_layers[3])])
 
-        layers.append(make_tcnn_block(self.planes[4], self.planes[5], kernel_size=3, stride=2, padding=0))
+        layers.append(make_tcnn_block(self.planes[4], self.planes[5], kernel_size=3, stride=2, padding=1))
         layers.extend([make_cnn_block(self.planes[5], self.planes[5], kernel_size=3, stride=1, padding=1)
                        for _ in range(self.num_layers[4])])
 
-        layers.append(make_tcnn_block(self.planes[5], self.planes[6], kernel_size=3, stride=2, padding=0))
+        layers.append(make_tcnn_block(self.planes[5], self.planes[6], kernel_size=3, stride=2, padding=1))
         layers.extend([make_cnn_block(self.planes[6], self.planes[6], kernel_size=3, stride=1, padding=1)
                        for _ in range(self.num_layers[5])])
 
