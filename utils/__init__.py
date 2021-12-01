@@ -3,7 +3,6 @@ Useful utils
 """
 from .misc import *
 from .logger import *
-from .visualize import *
 from .eval import *
 from .parser import *
 from .training import *
