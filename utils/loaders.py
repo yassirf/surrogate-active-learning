@@ -3,7 +3,7 @@ import torch
 import torch.utils.data as data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-from .misc import get_cifar_models, get_imagenet_models
+from .misc import get_cifar_models
 from collections import OrderedDict
 
 __all__ = [
@@ -236,9 +236,6 @@ def load_checkpoint_path(args, num_classes, path, use_cuda):
     if 'cifar' in args.dataset:
         models = get_cifar_models()
         model = load_model(args, models, num_classes)
-    elif 'imagenet' in args.dataset:
-        models = get_imagenet_models()
-        model = load_model_imagenet(args, models, num_classes)
 
     if use_cuda: model = model.cuda()
 
