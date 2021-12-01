@@ -135,6 +135,9 @@ def main():
 
     for aliter in range(args.acquisition_iterations + 1):
 
+        # Reinitialise model
+        model = model.reinitialise().to(device)
+
         # Convert labelled into a training set
         trainloader = data.DataLoader(active_dataset, batch_size=args.train_batch, shuffle=True, num_workers=args.workers)
 

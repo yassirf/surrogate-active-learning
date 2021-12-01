@@ -98,8 +98,12 @@ class DenseNet(nn.Module):
         # Loss function
         self.criterion = nn.CrossEntropyLoss(reduction = 'mean')
 
+        self.depth = depth
+        self.block = block,
         self.growthRate = growth_rate
         self.dropRate = drop_rate
+        self.compression_rate = compression_rate
+        self.kwargs = kwargs
 
         # self.inplanes is a global variable used across multiple helper functions
         self.inplanes = growth_rate * 2
@@ -118,6 +122,17 @@ class DenseNet(nn.Module):
         self.fc = nn.Linear(self.inplanes, num_classes)
 
         self._initialise()
+
+    def reinitialise(self):
+        return DenseNet(
+            depth = self.depth,
+            block = self.block,
+            dropRate = self.dropRate,
+            num_classes = self.num_classes,
+            growth_rate = self.growth_rate,
+            compression_rate = self.compression_rate,
+            **self.kwargs
+        )
 
     def _initialise(self):
         # Weight initialization

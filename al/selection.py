@@ -49,17 +49,18 @@ class BaseSelector(object):
             outputs, _ = model(inputs)
 
             # Store output predictions
-            storage['outputs'].append(outputs.detach().clone().cpu().numpy())
+            storage['outputs'].append(outputs.detach().clone().cpu())
 
         # Stack predictions
-        storage['outputs'] = np.concatenate(storage['outputs'])
+        storage['outputs'] = torch.cat(storage['outputs'], dim = 0)
 
         return storage
 
     def select(self, args, model: nn.Module, active_set: ActiveLearningDataset):
         raise NotImplementedError
 
-    def random(self, args, model: nn.Module, active_set: ActiveLearningDataset):
+    @staticmethod
+    def random(args, model: nn.Module, active_set: ActiveLearningDataset):
 
         # Ensure active learning set is in evaluation
         active_set.eval()
@@ -79,7 +80,8 @@ class SelectionGreedyLeastConfidence(BaseSelector):
         super(SelectionGreedyLeastConfidence, self).__init__(args, use_cuda, **kwargs)
 
     def compute_single(self, args, outputs):
-        return -sp.special.log_softmax(outputs, axis = -1).max(-1)
+        values, _ =  -torch.log_softmax(outputs, dim = -1).max(-1)
+        return values
 
     def select(self, args, model: nn.Module, active_set: ActiveLearningDataset):
 
@@ -90,7 +92,10 @@ class SelectionGreedyLeastConfidence(BaseSelector):
         storage = self.generate(args, model, active_set)
 
         # Generate metrics
-        metrics = self.compute_single(storage['outputs'])
+        metrics = self.compute_single(args, storage['outputs'])
+
+        # Map metrics to numpy
+        metrics = metrics.numpy()
 
         # Choose the predictions with largest metric
         indices = np.argpartition(metrics, -size)[-size:]
@@ -107,7 +112,7 @@ class SelectionGreedyMaxEntropy(BaseSelector):
         super(SelectionGreedyMaxEntropy, self).__init__(args, use_cuda, **kwargs)
 
     def compute_single(self, args, outputs):
-        log_probs = sp.special.log_softmax(outputs, axis=-1)
+        log_probs = torch.log_softmax(outputs, dim = -1)
         return -(log_probs * np.exp(log_probs)).sum(-1)
 
     def select(self, args, model: nn.Module, active_set: ActiveLearningDataset):
@@ -118,7 +123,75 @@ class SelectionGreedyMaxEntropy(BaseSelector):
         storage = self.generate(args, model, active_set)
 
         # Generate metrics
-        metrics = self.compute_single(storage['outputs'])
+        metrics = self.compute_single(args, storage['outputs'])
+
+        # Map metrics to numpy
+        metrics = metrics.numpy()
+
+        # Choose the predictions with largest metric
+        indices = np.argpartition(metrics, -size)[-size:]
+
+        # Combine dataset
+        updated = indices + active_set.lab_idx
+
+        # Return combined dataset
+        return active_set.create(updated)
+
+
+class SelectionGreedyMaxRecon(BaseSelector):
+    def __init__(self, args, use_cuda, **kwargs):
+        super(SelectionGreedyMaxRecon, self).__init__(args, use_cuda, **kwargs)
+
+    @torch.no_grad()
+    def generate(self, args, model: nn.Module, active_set: ActiveLearningDataset):
+
+        # Ensure active learning set is in evaluation
+        active_set.eval()
+
+        # Define the dataset loader
+        active_loader = data.DataLoader(active_set, batch_size=args.test_batch, shuffle=False, num_workers=args.workers)
+
+        # Store all predictions
+        storage = {'outputs': [], 'latents': [], 'inputs': []}
+
+        # Iterate over unlabelled and generate predictions
+        for batch_idx, (inputs, targets) in enumerate(active_loader):
+
+            if self.use_cuda: inputs, targets = inputs.cuda(), targets.cuda()
+            inputs, targets = torch.autograd.Variable(inputs), torch.autograd.Variable(targets)
+
+            # Compute outputs and store
+            outputs, extra = model(inputs)
+
+            # Store output predictions
+            storage['outputs'].append(outputs.detach().clone().cpu())
+            storage['latents'].append(extra['latent'].detach().clone().cpu())
+            storage['inputs'].append(extra['input'].detach().clone().cpu())
+
+        # Stack predictions
+        storage['outputs'] = torch.cat(storage['outputs'], dim = 0)
+        storage['latents'] = torch.cat(storage['latents'], dim = 0)
+        storage['inputs'] = torch.cat(storage['inputs'], dim = 0)
+
+        return storage
+
+    def compute_single(self, args, outputs, inputs):
+        diff = outputs - inputs
+        diff = diff.view(diff.size(0), -1)
+        return (diff * diff).mean(-1)
+
+    def select(self, args, model: nn.Module, active_set: ActiveLearningDataset):
+        # Selection size
+        size = int(self.acqn_fraction * len(active_set.set))
+
+        # Generate outputs
+        storage = self.generate(args, model, active_set)
+
+        # Generate metrics
+        metrics = self.compute_single(args, storage['outputs'], storage['inputs'])
+
+        # Map metrics to numpy
+        metrics = metrics.numpy()
 
         # Choose the predictions with largest metric
         indices = np.argpartition(metrics, -size)[-size:]
@@ -137,5 +210,8 @@ def load_selection(args, use_cuda, **kwargs):
 
     if args.selector.endswith('entropy'):
         return SelectionGreedyMaxEntropy(args, use_cuda, **kwargs)
+
+    if args.selector.endswith('recon'):
+        return SelectionGreedyMaxRecon(args, use_cuda, **kwargs)
 
     raise ValueError("Selection method '{}' has not been defined".format(args.selector))
