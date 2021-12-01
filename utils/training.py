@@ -19,7 +19,9 @@ __all__ = [
     'save_checkpoint',
     'adjust_learning_rate',
     'train',
+    'train_daf',
     'test',
+    'test_daf'
 ]
 
 
@@ -117,6 +119,43 @@ def train(args, state, trainloader, model, scheduler, optimizer, epoch, use_cuda
     return losses.avg, top1.avg
 
 
+def train_daf(args, state, trainloader, model, scheduler, optimizer, epoch, use_cuda):
+    # Switch to training mode
+    model.train()
+
+    losses = AverageMeter()
+
+    for batch_idx, (inputs, targets) in enumerate(trainloader):
+
+        if use_cuda: inputs, targets = inputs.cuda(), targets.cuda()
+
+        # Batch level data augmentation
+        inputs, targets = batch_repetition(inputs, targets, repetitions = args.batch_repetitions)
+        inputs, targets = input_repetition(inputs, targets, repetitionp = args.input_repetitions)
+        inputs, targets = torch.autograd.Variable(inputs), torch.autograd.Variable(targets)
+
+        # Compute output
+        outputs, extra = model(inputs)
+        loss, extra = model.get_loss(args, outputs, extra, targets)
+
+        # Terminate early if model has convergence issues
+        if np.isnan(loss.data.item()):
+            return np.nan, np.nan
+
+        # Record loss
+        losses.update(loss.data.item(), inputs.size(0))
+
+        # Update arguments for schedules of parameters
+        update_args(args, state, scheduler)
+
+        # Compute gradient and do SGD step
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+    return losses.avg, 0.0
+
+
 @torch.no_grad()
 def test(args, state, testloader, model, scheduler, epoch, use_cuda):
 
@@ -189,4 +228,44 @@ def test(args, state, testloader, model, scheduler, epoch, use_cuda):
     print(msg)
 
     return losses.avg, top1.avg
+
+
+@torch.no_grad()
+def test_daf(args, state, testloader, model, scheduler, epoch, use_cuda):
+
+    # Switch to evaluate mode
+    model.eval()
+
+    # Evaluate performance on cross-entropy
+    criterion = nn.MSELoss(reduction = 'mean')
+
+    losses = AverageMeter()
+
+    # save predictions
+    saved_probs, saved_targets = [], []
+
+    t0 = time.time()
+    for batch_idx, (inputs, _) in enumerate(testloader):
+
+        if use_cuda: inputs = inputs.cuda()
+        inputs = torch.autograd.Variable(inputs)
+
+        # Compute output and ensemble
+        outputs, _ = model(inputs)
+        loss = criterion(outputs, inputs)
+
+        # Measure accuracy and record loss
+        losses.update(loss.data.item(), inputs.size(0))
+
+    # Printing message
+    msg = "Loss: {loss:.4f} | " \
+          "time {time: .2f}"
+
+    msg = msg.format(
+        loss=losses.avg,
+        time=time.time()-t0
+    )
+    print(msg)
+
+    return losses.avg, 0.0
 

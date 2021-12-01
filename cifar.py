@@ -13,7 +13,9 @@ import torch.backends.cudnn as cudnn
 import models.cifar as models
 
 from utils import train as train_epoch
+from utils import train_daf as train_daf_epoch
 from utils import test as test_epoch
+from utils import test_daf as test_daf_epoch
 from utils import adjust_learning_rate, save_checkpoint
 
 from utils import Logger, mkdir_p, savefig, get_args, get_device, set_seed
@@ -97,6 +99,10 @@ def main():
     # Setting up model structure
     start_epoch, best_acc, model, logger = setup_model(args, state, device, use_gpu)
 
+    # Setting up loops
+    utrain_epoch = train_daf_epoch if args.arch.startswith('daf') else train_epoch
+    utest_epoch = test_daf_epoch if args.arch.startswith('daf') else test_epoch
+
     # Time tracking
     t0 = time.time()
 
@@ -137,8 +143,8 @@ def main():
         for epoch in range(start_epoch, args.epochs):
             print('\nEpoch: [%d | %d] LR: %f' % (epoch + 1, args.epochs, state['lr']))
 
-            train_loss, train_acc = train_epoch(args, state, trainloader, model, scheduler, optimizer, epoch, use_gpu)
-            test_loss, test_acc = test_epoch(args, state, testloader, model, scheduler, epoch, use_gpu)
+            train_loss, train_acc = utrain_epoch(args, state, trainloader, model, scheduler, optimizer, epoch, use_gpu)
+            test_loss, test_acc = utest_epoch(args, state, testloader, model, scheduler, epoch, use_gpu)
 
             # Update learning rate epoch wise
             if not args.batch_lr_update: adjust_learning_rate(state, scheduler)
