@@ -166,50 +166,8 @@ def load_dataset(args, transform_train, transform_test, return_sets = False):
 def load_model(args, models, num_classes):
 
     if 'densenet' in args.arch:
-        model = models.__dict__[args.arch](
-            args = args,
+        model = models.__dict__[args.arch](args = args)
 
-            # Default parameters of densenet
-            num_classes=num_classes,
-            depth=args.depth,
-            growth_rate=args.growth_rate,
-            compression_rate=args.compression_rate,
-            drop_rate=args.drop,
-
-            # For automatic gaussian logits
-            use_final_noise=args.use_final_noise,
-            final_dropout_noise=args.final_dropout_noise,
-
-            # For self-distribution distillation
-            noise_a=args.noise_a,
-            noise_b=args.noise_b,
-            num_passes=args.num_passes,
-
-            # For distillation
-            ensemble_path=args.ensemble_path,
-
-            # For mimo models
-            num_heads=args.num_heads
-        )
-    elif 'resnet' in args.arch:
-        model = models.__dict__[args.arch](
-            args = args,
-
-            # Default parameters of densenet
-            num_classes=num_classes,
-            depth=args.depth,
-
-            # For self-distribution distillation
-            noise_a=args.noise_a,
-            noise_b=args.noise_b,
-            num_passes=args.num_passes,
-
-            # For distillation
-            ensemble_path=args.ensemble_path,
-
-            # For mimo models
-            num_heads=args.num_heads
-        )
     else:
         raise ValueError("==> Model architecture can not be loaded.")
 
