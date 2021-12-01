@@ -47,7 +47,7 @@ def load_optimizer(args, model):
             nesterov = "nesterov" in opt_name,
         )
     if opt_name.startswith("adam"):
-        optimizer = torch.optim.ADAM(
+        optimizer = torch.optim.Adam(
             model.parameters(),
             lr = args.lr,
             weight_decay = args.weight_decay,
