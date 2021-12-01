@@ -135,6 +135,8 @@ def main():
 
     for aliter in range(args.acquisition_iterations + 1):
 
+        print('\nDataset size: {}\n'.format(len(active_dataset)))
+
         # Reinitialise model
         model = model.reinitialise().to(device)
 

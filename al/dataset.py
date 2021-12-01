@@ -43,6 +43,11 @@ class ActiveLearningDataset(Dataset):
     def create(self, idx):
         return ActiveLearningDataset(set = self.set, idx = idx)
 
+    def update(self, idx):
+        # Update the labelled index set
+        for i in idx: self.lab_idx.append(self.unlab_idx[i])
+        return ActiveLearningDataset(set=self.set, idx=self.lab_idx)
+
     def __len__(self):
         return len(self.idx)
 

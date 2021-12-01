@@ -100,11 +100,8 @@ class SelectionGreedyLeastConfidence(BaseSelector):
         # Choose the predictions with largest metric
         indices = np.argpartition(metrics, -size)[-size:]
 
-        # Combine dataset
-        updated = indices + active_set.lab_idx
-
         # Return combined dataset
-        return active_set.create(updated)
+        return active_set.update(indices)
 
 
 class SelectionGreedyMaxEntropy(BaseSelector):
@@ -131,11 +128,8 @@ class SelectionGreedyMaxEntropy(BaseSelector):
         # Choose the predictions with largest metric
         indices = np.argpartition(metrics, -size)[-size:]
 
-        # Combine dataset
-        updated = indices + active_set.lab_idx
-
         # Return combined dataset
-        return active_set.create(updated)
+        return active_set.update(indices)
 
 
 class SelectionGreedyMaxRecon(BaseSelector):
@@ -200,7 +194,7 @@ class SelectionGreedyMaxRecon(BaseSelector):
         updated = indices + active_set.lab_idx
 
         # Return combined dataset
-        return active_set.create(updated)
+        return active_set.update(indices)
 
 
 def load_selection(args, use_cuda, **kwargs):
