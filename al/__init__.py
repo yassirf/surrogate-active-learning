@@ -1,3 +1,3 @@
 
-from .selection import *
-from .dataset import *
+from .dataset import ActiveLearningDataset
+from .selection import load_selection
