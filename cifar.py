@@ -92,7 +92,7 @@ def setup_model(args, state, device, use_gpu):
     state['lr'] = scheduler.get_last_lr()[0]
     # Loggers for training
     logger = Logger(os.path.join(args.checkpoint, 'log.txt'), title=title)
-    logger.set_names(['Learning Rate', 'Train Loss', 'Valid Loss', 'Train Acc.', 'Valid Acc.'])
+    logger.set_names(['Learning Rate', 'Dataset size', 'Train Loss', 'Valid Loss', 'Train Acc.', 'Valid Acc.'])
 
     # Log location for saved models
     print('==> Checkpoints saved to: {}'.format(args.checkpoint))
@@ -159,7 +159,7 @@ def main():
                 return
 
             # Append logger file
-            logger.append([state['lr'], train_loss, test_loss, train_acc, test_acc])
+            logger.append([state['lr'], len(active_dataset), train_loss, test_loss, train_acc, test_acc])
 
             # Model performance
             is_best = test_acc > best_acc
@@ -181,8 +181,6 @@ def main():
             t1 = time.time()
             print('Current: {:.4f}  Best: {:.4f};    Elapsed: {:}.'.format(test_acc, best_acc, format_time(t1-t0)))
 
-        logger.close()
-        logger.plot()
         savefig(os.path.join(args.checkpoint, 'log.al{}.eps'.format(aliter + 1)))
 
         print('Best acc:')
@@ -198,6 +196,9 @@ def main():
 
         # Select data using model
         active_dataset = selector.select(args, model, active_dataset)
+
+    logger.close()
+    logger.plot()
 
 
 if __name__ == '__main__':
