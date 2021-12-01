@@ -167,7 +167,7 @@ def load_model(args, models, num_classes):
 
     if 'densenet' in args.arch:
         model = models.__dict__[args.arch](args = args)
-    elif 'dag' in args.arch:
+    elif 'daf' in args.arch:
         model = models.__dict__[args.arch](args = args)
 
     else: raise ValueError("==> Model architecture can not be loaded.")
