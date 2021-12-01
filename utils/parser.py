@@ -74,6 +74,7 @@ def get_cyclic_lr_args(parser):
 
 def get_active_learning_args(parser):
     # Active learning parameters
+    parser.add_argument('--selector', default='lc', type=str, help='Selection method and metric')
     parser.add_argument('--initial-size', default=0.05, type=float, help='Fraction of dataset as initial')
     parser.add_argument('--acquisition-size', default=0.05, type=float, help='Fraction of dataset as acquisition')
     parser.add_argument('--acquisition-iterations', default=4, type=int, help='Number of AL loops')
