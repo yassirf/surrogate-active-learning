@@ -84,6 +84,7 @@ def get_active_learning_args(parser):
     parser.add_argument('--initial-size', default=0.05, type=float, help='Fraction of dataset as initial')
     parser.add_argument('--acquisition-size', default=0.05, type=float, help='Fraction of dataset as acquisition')
     parser.add_argument('--acquisition-iterations', default=4, type=int, help='Number of AL loops')
+    parser.add_argument('--dataset-path', default='', type=str, help='Path to indices')
     return parser
 
 

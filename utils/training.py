@@ -28,8 +28,7 @@ __all__ = [
 def save_checkpoint(state, is_best, checkpoint='checkpoint', filename='checkpoint.pth.tar'):
     filepath = os.path.join(checkpoint, filename)
     torch.save(state, filepath)
-    if is_best:
-        shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
+    if is_best: shutil.copyfile(filepath, os.path.join(checkpoint, 'model_best.pth.tar'))
 
 
 def save_dataset(dataset, checkpoint='checkpoint', filename='dataset.pth.tar'):
